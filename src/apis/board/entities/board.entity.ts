@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { BoardImage } from 'src/apis/boardImage/entities/boardImage.entity';
 import { User } from 'src/apis/user/entities/user.entity';
 import {
   Column,
@@ -6,7 +7,9 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -24,7 +27,7 @@ export class Board {
   @Field(() => String)
   title: string;
 
-  @Column()
+  @Column('text')
   @Field(() => String)
   contents: string;
 
@@ -40,7 +43,7 @@ export class Board {
   @Field(() => String)
   centerPhone: string;
 
-  @Column()
+  @Column({ default: 0 })
   @Field(() => Int)
   recruitCount: number;
 
@@ -68,11 +71,19 @@ export class Board {
   @Field(() => String)
   location2: string;
 
+  @OneToMany(() => BoardImage, (boardImage) => boardImage.board)
+  @Field(() => [BoardImage], { nullable: true })
+  boardImage: BoardImage[];
+
   @CreateDateColumn()
   @Field(() => Date)
   createdAt: Date;
 
+  @UpdateDateColumn()
+  @Field(() => Date, { nullable: true })
+  updatedAt: Date;
+
   @DeleteDateColumn()
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   deletedAt: Date;
 }

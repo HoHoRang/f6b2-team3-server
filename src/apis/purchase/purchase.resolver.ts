@@ -6,27 +6,53 @@ import { CreatePurchaseInput } from './dto/createPurchase.input';
 import { Purchase } from './entities/purchase.entity';
 import { PurchaseService } from './purchase.service';
 
+/**
+ * Purchase GraphQL API Resolver
+ * @APIs `createPurchase`, `cancelPurchase`, `fetchPurchases`
+ */
 @Resolver()
 export class PurchaseResolver {
   constructor(
     private readonly purchaseService: PurchaseService, //
   ) {}
-  // createPurchase
+
+  /**
+   * Create Purchase API
+   * @type [`Mutation`]
+   * @param createPurchaseInput 구매내역에 들어갈 정보들
+   * @returns `Purchase` 구매내역에 저장된 정보
+   */
   @Mutation(() => Purchase)
-  createPurchase(
+  async createPurchase(
     @Args('createPurchaseInput') createPurchaseInput: CreatePurchaseInput,
   ) {
-    return this.purchaseService.create({ createPurchaseInput });
+    return await this.purchaseService.create({ createPurchaseInput });
   }
-  // cancelPurchase
+
+  /**
+   * Cancel Purchase API
+   * @type [`Mutation`]
+   * @param purchaseId 구매취소할 구매내역의 ID
+   * @returns `Purchase` 취소된 구매내역의 정보
+   */
   @Mutation(() => Purchase)
-  cancelPurchase(@Args('purchaseId') purchaseId: string) {
-    return this.purchaseService.cancel({ purchaseId });
+  async cancelPurchase(
+    @Args('purchaseId') purchaseId: string, //
+  ) {
+    return await this.purchaseService.cancel({ purchaseId });
   }
-  // fetchPurchases
+
+  /**
+   * Fetch all Purchases of User
+   * @type [`Query`]
+   * @param currentUser 현재 접속한 유저의 정보
+   * @returns `[Purchase]` 현재 접속한 유저의 모든 구매내역
+   */
   @UseGuards(GqlAuthAccessGuard)
   @Query(() => [Purchase])
-  fetchPurchases(@CurrentUser() currentUser: ICurrentUser) {
-    return this.purchaseService.findAll({ currentUser });
+  async fetchPurchases(
+    @CurrentUser() currentUser: ICurrentUser, //
+  ) {
+    return await this.purchaseService.findAll({ currentUser });
   }
 }

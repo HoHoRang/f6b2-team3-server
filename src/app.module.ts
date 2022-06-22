@@ -16,11 +16,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import type { RedisClientOptions } from 'redis';
 import * as redisStore from 'cache-manager-redis-store';
+import { CaptchaModule } from './apis/captcha/captcha.module';
+import { ChatHistoryModule } from './apis/chatHistory/chatHistory.module';
+import { ChatModule } from './gateways/chat/chat.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { DibsModule } from './apis/dibs/dibs.module';
+import { WallpaperModule } from './apis/wallpaper/wallpaper.module';
 
 @Module({
   imports: [
     AuthModule, //
     BoardModule,
+    CaptchaModule,
+    ChatHistoryModule,
+    ChatModule,
+    DibsModule,
     DonationModule,
     EnrollModule,
     ImageModule,
@@ -28,23 +38,25 @@ import * as redisStore from 'cache-manager-redis-store';
     ProductImageModule,
     PurchaseModule,
     UserModule,
+    WallpaperModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/commons/graphql/schema.gql',
       context: ({ req, res }) => ({ req, res }),
       cors: {
-        origin: process.env.FRONTEND_URL,
+        origin: process.env.FRONTEND_URLS.split(','),
         Credential: true,
       },
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DATABASE_HOST, // (1) Local: 'my-database' , (2) Cloud: 'database.voluntier.site'
+      host: process.env.DATABASE_HOST,
       port: 3306,
       username: 'root',
       password: 'root',
-      database: process.env.DATABASE, // (1) Local: 'mydocker02' , (2) Cloud: 'voluntier'
+      database: process.env.DATABASE,
       entities: [__dirname + '/apis/**/*.entity.*'],
+      timezone: '-09:00', // 한국 기준
       synchronize: true,
       logging: true,
     }),
@@ -56,6 +68,7 @@ import * as redisStore from 'cache-manager-redis-store';
       url: process.env.REDIS_URL,
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
