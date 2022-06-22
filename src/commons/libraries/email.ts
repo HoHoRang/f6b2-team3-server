@@ -309,7 +309,7 @@ export function getTemplate({
                                         <img
                                           align="center"
                                           border="0"
-                                          src="https://storage.googleapis.com/team-project-image-storage/Logo_.png"
+                                          src="https://storage.googleapis.com/voluntier-image-storage/Logo_.png"
                                           alt="Voluntier"
                                           title="Voluntier"
                                           style="
@@ -586,7 +586,7 @@ export function getTemplate({
                                       <img
                                         align="center"
                                         border="0"
-                                        src="https://storage.googleapis.com/team-project-image-storage/Ellipse%205.png"
+                                        src="https://storage.googleapis.com/voluntier-image-storage/Ellipse%205.png"
                                         alt="Hero Image"
                                         title="Hero Image"
                                         style="
@@ -1237,7 +1237,7 @@ export function getTemplate({
                                       <img
                                         align="center"
                                         border="0"
-                                        src="https://storage.googleapis.com/team-project-image-storage/product7.png"
+                                        src="https://storage.googleapis.com/voluntier-image-storage/product7.png"
                                         alt=""
                                         title=""
                                         style="
@@ -1331,7 +1331,7 @@ export function getTemplate({
                                       <img
                                         align="center"
                                         border="0"
-                                        src="https://storage.googleapis.com/team-project-image-storage/product8.png"
+                                        src="https://storage.googleapis.com/voluntier-image-storage/product8.png"
                                         alt=""
                                         title=""
                                         style="
@@ -2048,7 +2048,7 @@ export function getTemplate({
                                               target="_blank"
                                             >
                                               <img
-                                                src="https://storage.googleapis.com/team-project-image-storage/facebook.png"
+                                                src="https://storage.googleapis.com/voluntier-image-storage/facebook.png"
                                                 alt="Facebook"
                                                 title="Facebook"
                                                 width="32"
@@ -2106,7 +2106,7 @@ export function getTemplate({
                                               target="_blank"
                                             >
                                               <img
-                                                src="https://storage.googleapis.com/team-project-image-storage/linkedin.png"
+                                                src="https://storage.googleapis.com/voluntier-image-storage/linkedin.png"
                                                 alt="LinkedIn"
                                                 title="LinkedIn"
                                                 width="32"
@@ -2164,7 +2164,7 @@ export function getTemplate({
                                               target="_blank"
                                             >
                                               <img
-                                                src="https://storage.googleapis.com/team-project-image-storage/instagram.png"
+                                                src="https://storage.googleapis.com/voluntier-image-storage/instagram.png"
                                                 alt="Instagram"
                                                 title="Instagram"
                                                 width="32"
@@ -2222,7 +2222,7 @@ export function getTemplate({
                                               target="_blank"
                                             >
                                               <img
-                                                src="https://storage.googleapis.com/team-project-image-storage/twitter.png"
+                                                src="https://storage.googleapis.com/voluntier-image-storage/twitter.png"
                                                 alt="Twitter"
                                                 title="Twitter"
                                                 width="32"
